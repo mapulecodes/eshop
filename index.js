@@ -15,6 +15,7 @@ app.use(router,
     express.json(),
     express.urlencoded({
         extended: true
+
     }))
 router.use(bodyParser.json())
 // Endpoint
@@ -25,7 +26,7 @@ router.get('^/$|/eShop', (req, res) => {
 router.get('/users', (req, res) => {
     try {
         const strQry = `
-        SELECT firstName, lastName, age, emailAdd
+        SELECT firstName, lastName, age, emailAdd, userRole, profileURL
         FROM Users;
         `
         db.query(strQry, (err, results) => {
@@ -46,7 +47,7 @@ router.get('/users', (req, res) => {
 router.get('/user/:id', (req, res) => {
     try {
         const strQry = `
-        SELECT userID, firstName, lastName, age, emailAdd
+        SELECT userID, firstName, lastName, age, emailAdd, userRole, profileURL
         FROM Users
         WHERE userID = ${req.params.id};
         `
@@ -152,7 +153,7 @@ router.post('/login', (req, res) => {
     try {
         const { emailAdd, pwd } = req.body
         const strQry = `
-        SELECT userID, firstName, lastName, age, emailAdd, pwd
+        SELECT userID, firstName, lastName, age, emailAdd, pwd, userRole, profiileURL
         FROM Users
         WHERE emailAdd = '${emailAdd}';
         `
