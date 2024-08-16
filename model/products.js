@@ -133,4 +133,6 @@ class Products {
     }
   }
 }
-export { Users };
+export { 
+  Products
+};
