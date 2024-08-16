@@ -1,24 +1,28 @@
 import express from 'express'
 import path from 'path'
 import bodyParser from 'body-parser'
-import { users } from '..model/index.js'
-const userRouter = express.Router()
-userRouter.use(bodyParser.json())
-userRouter.get('/', (req, res) => {
+import { products } from '../model/index.js'
+const productRouter = express.Router()
+productRouter.use(bodyParser.json())
+productRouter.get('/', (req, res) => {
     users.fetchUsers(req, res)
 })
-userRouter.get('/:id', (req, res) => {
+productRouter.get('/:id', (req, res) => {
     users.fetchUser(req, res)
 })
-userRouter.post('./register', (req, res) => {
+productRouter.post('./register', (req, res) => {
     users.registerUser(req, res)
 })
-userRouter.patch('/user/:id', (req, res) => {
+productRouter.patch('/user/:id', (req, res) => {
     users.updateUser(req, res)
 })
-userRouter.delete('/user:id',(req, res) => {
+productRouter.delete('/user:id',(req, res) => {
     users.deleteUser(req, res)
 })
-userRouter.post('login',(req, res)=> {
+productRouter.post('login',(req, res)=> {
     users.login(req, res)
 })
+
+export {
+    productRouter
+}
