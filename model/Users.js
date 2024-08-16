@@ -1,4 +1,4 @@
-import { connection } from '../config/index.js'
+import { connection as db } from '../config/index.js'
 
 import { createToken } from '../middleware/AuthenticateUser.js'
 import { compare, hash } from 'bcrypt'
@@ -8,7 +8,7 @@ class Users {
        
             try {
                 const strQry = `
-                SELECT firstName, lastName, age, emailAdd, userRole, profileURL
+                SELECT firstName, lastName, age, emailAdd, UserRole, ProfilrURL
                 FROM Users;
                 `
                 db.query(strQry, (err, results) => {
